@@ -1,11 +1,9 @@
 package kata.PP_3_1_2_spring_boot_application.DAO;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import kata.PP_3_1_2_spring_boot_application.model.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
