@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>список</title>
+    <style>
+        .container {
+           max-width: 50%;
+           margin: 0 auto;
+           display: flex;
+           flex-wrap: wrap;
+        }
+
+        .column {
+          flex: 1;
+          border: 1px solid #000;
+          text-align: center;
+        }
+
+        .centered {
+           text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h2 class="centered">Пользователи</h2>
+<br>
+<div class="centered">
+    <input type="button" value="Добавить пользователя" onclick="window.location.href = 'users/new'">
+</div>
+<br>
+<div class="container">
+    <div class="column"><strong>Id</strong></div>
+    <div class="column"><strong>Имя</strong></div>
+    <div class="column"><strong>Фамилия</strong></div>
+    <div class="column"><strong>Возраст</strong></div>
+    <div class="column"><strong>Удалить пользователя</strong></div>
+    <div class="column"><strong>Обновить данные</strong></div>
+</div>
+
+<div class="container" th:each="user:${users}">
+    <div class="column" th:text="${user.getId()}">Column 1</div>
+    <div class="column" th:text="${user.getName()}">Column 2</div>
+    <div class="column" th:text="${user.getSurname()}">Column 3</div>
+    <div class="column" th:text="${user.getAge()}">Column 4</div>
+    <div class="column">
+        <form th:method="POST" th:action="@{/users/delete?id={id}(id=${user.getId()})}">
+            <input type="submit" value="Удалить">
+        </form>
+    </div>
+    <div class="column">
+        <form th:method="POST" th:action="@{/users/edit?id={id}(id=${user.getId()})}">
+            <input type="submit" value="Обновить">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
